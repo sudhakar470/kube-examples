@@ -1,4 +1,7 @@
 ## use this file along with cloudprovider.yaml
+## export LoadBalancerIP=$(kubectl get services/webapp1-loadbalancer-svc -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+## echo LoadBalancerIP=$LoadBalancerIP
+## curl LoadBalancerIP
 apiVersion: v1
 kind: Service
 metadata:
