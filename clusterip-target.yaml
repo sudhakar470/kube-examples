@@ -1,0 +1,35 @@
+## this file will deploy a service and pods to showcase clusterIP
+## access cluster IP using 
+## export CLUSTER_IP=$(kubectl get services/webapp1-clusterip-svc -o go-template='{{(index .spec.clusterIP)}}')
+## echo CLUSTER_IP=$CLUSTER_IP
+## test it using curl $CLUSTER_IP:80
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp1-clusterip-targetport-svc
+  labels:
+    app: webapp1-clusterip-targetport
+spec:
+  ports:
+  - port: 8080
+    targetPort: 80
+  selector:
+    app: webapp1-clusterip-targetport
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webapp1-clusterip-targetport-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapp1-clusterip-targetport
+    spec:
+      containers:
+      - name: webapp1-clusterip-targetport-pod
+        image: your image
+        ports:
+        - containerPort: 80
