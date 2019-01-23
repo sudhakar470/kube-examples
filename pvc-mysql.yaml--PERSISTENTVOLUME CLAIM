@@ -1,0 +1,14 @@
+##Once a Persistent Volume is available, applications can claim the volume for their use.
+##The claim is designed to stop applications accidentally writing to the same volume and causing conflicts and data corruption.
+## kubectl create -f pvc-mysql.yaml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: claim-mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
