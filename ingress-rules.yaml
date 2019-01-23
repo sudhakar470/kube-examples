@@ -1,3 +1,5 @@
+## install this file with kubectl create -f 
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
